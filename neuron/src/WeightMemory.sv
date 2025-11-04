@@ -1,7 +1,5 @@
 module WeightMemory #(
   parameter int    numWeight    =  3,
-  parameter int    neuronNo     =  5,
-  parameter int    layerNo      =  1,
   parameter int    addressWidth = 10,
   parameter int    dataWidth    = 16,
   parameter string weightFile   = "w_1_15.mif")

@@ -28,6 +28,8 @@ module neuron
 
   logic [$clog2(numWeight)-1:0] rcnt;
   logic [$clog2(numWeight)-1:0] wcnt;
+  logic [dataWidth-1:0] w_in;
+  logic                 wr_en;
   logic [dataWidth-1:0] w_out;
   logic [dataWidth-1:0] mInput_dl;
   logic [2*dataWidth-1:0] mul;
@@ -66,18 +68,28 @@ module neuron
       end
     end
   end
-
+  always @(posedge clk or negedge rstn) begin
+    if (!rstn) begin
+      w_in  <= {dataWidth{1'b0}};
+      wr_en <= 1'b0;
+    end else begin
+      if ((mWeightValid) & (config_layer_num==layerNo) & (config_neuron_num==neuronNo)) begin
+        w_in <= mWeight;
+        wr_en <= 1'b1;
+      end else begin
+        wr_en <= 1'b0;
+      end
+    end
+  end
   WeightMemory #(
     .numWeight(numWeight),
-    .neuronNo(neuronNo),
-    .layerNo(layerNo),
     .addressWidth($clog2(numWeight)),
     .dataWidth(dataWidth),
     .weightFile(weightFile)
   ) u_WeightMemory (
     .clk    (clk         ),
-    .wr_data(mWeight     ),
-    .wr_en  (mWeightValid),
+    .wr_data(w_in        ),
+    .wr_en  (wr_en       ),
     .wr_addr(wcnt        ),
     .rd_data(w_out       ),
     .rd_en  (mInputValid ),
@@ -155,7 +167,7 @@ module neuron
       Sig_ROM #(
         .inWidth(sigmoidSize),
         .dataWidth(dataWidth),
-        .sigContent(sigContent)
+        .sigContent(sigFile)
       ) u_Sig_ROM (
       .clk(clk),
       .x(sum[2*dataWidth-1-:sigmoidSize]),
