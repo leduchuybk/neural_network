@@ -5,7 +5,7 @@
 Design implements operation of a sigmoid neuron. Each input values will be multiplied with its predefined weighted value which is stored in Block RAM. Sum of those multiplication will be added with a predefined bias. This result will be passed to a sigmoid function to obtain the final result of neuron:
 $S(x) = \frac{1}{1 + e^{-x}}$.
 
-![image!](sigmoid_neurons.png)
+![image!](sigmoid_neuron.png)
 
 ## Inputs/Outputs
 
@@ -28,13 +28,13 @@ $S(x) = \frac{1}{1 + e^{-x}}$.
 
 |Name| Default value| Description|
 |---|---|---|
-|layerNo|0|-|
-|neuronNo|0|-|
+|layerNo|0|The neuron belongs to which layer.|
+|neuronNo|0|The neuron number in layer.|
 |numWeight|784|Size of Weight memory|
 |dataWidth|16|Bit width of input and output of this neurons|
 |sigmoidSize|5|Bit width of result of sigmoid function|
-|weightIntWidth|1|Defines the number of bits used for sign and magnitude of data. For example, when defining 4 for wieghtIntWidth, 1 bit out of 16 bits used for input and output of this neurons is used for sign and the other 3 bits are used for magnitude.|
-|actType|relu|-|
+|weightIntWidth|1|The number of bits used for integer part of weight including the sign bit. For example, when defining 4 for weightIntWidth, 1 bit out of 16 bits used for input and output of this neurons is used for sign and the other 3 bits are used for magnitude.|
+|actType|relu|Activation function for layer 3. It could be relu or sigmoid|
 |biasFile|-|Initialized bias value|
 |weightFile|-|Initialized weight value|
 
