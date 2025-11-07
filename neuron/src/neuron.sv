@@ -16,7 +16,7 @@ module neuron
   input  logic                 rstn,
   input  logic [dataWidth-1:0] mInput,
   input  logic                 mInputValid,
-  input  logic [dataWidth-1:0] mWeight,
+  input  logic [31:0]          mWeight,
   input  logic                 mWeightValid,
   input  logic [31:0]          mBias,
   input  logic                 mBiasValid,
@@ -74,7 +74,7 @@ module neuron
       wr_en <= 1'b0;
     end else begin
       if ((mWeightValid) & (config_layer_num==layerNo) & (config_neuron_num==neuronNo)) begin
-        w_in <= mWeight;
+        w_in <= mWeight[dataWidth-1:0];
         wr_en <= 1'b1;
       end else begin
         wr_en <= 1'b0;
@@ -173,8 +173,7 @@ module neuron
       .x(sum[2*dataWidth-1-:sigmoidSize]),
       .out(mOutput)
     );
-    end
-    else begin: g_ReLUinst
+    end else begin: g_ReLUinst
       ReLU #(
         .dataWidth(dataWidth),
         .weightIntWidth(weightIntWidth)

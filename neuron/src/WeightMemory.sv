@@ -4,16 +4,16 @@ module WeightMemory #(
   parameter int    dataWidth    = 16,
   parameter string weightFile   = "w_1_15.mif")
 (
-    input clk,
-    input wr_en,
-    input rd_en,
-    input [addressWidth-1:0] wr_addr,
-    input [addressWidth-1:0] rd_addr,
-    input [dataWidth-1:0] wr_data,
-    output reg [dataWidth-1:0] rd_data
+  input  logic                    clk,
+  input  logic                    wr_en,
+  input  logic                    rd_en,
+  input  logic [addressWidth-1:0] wr_addr,
+  input  logic [addressWidth-1:0] rd_addr,
+  input  logic [dataWidth-1:0]    wr_data,
+  output logic [dataWidth-1:0]    rd_data
 );
 
-    reg [dataWidth-1:0] mem [numWeight];
+  logic [dataWidth-1:0] mem [numWeight];
 
 `ifdef PRETRAINED
   initial
