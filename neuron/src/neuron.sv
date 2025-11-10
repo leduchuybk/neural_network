@@ -41,7 +41,7 @@ module neuron
   logic [31:0] biasReg [1];
   logic enb0, enb1, enb2;
   logic enb2_dl;
-  logic last_data, last_data_dl;
+  logic last_weight, last_mul;
 
   always_ff @( posedge clk or negedge rstn ) begin : RD_Counter
     if (!rstn) begin
@@ -120,41 +120,46 @@ module neuron
     end else begin
       if (enb1) begin
         // Addition of two positive but result is negative => overflow
-        if (!comboAdd[2*dataWidth-1] & !mul[2*dataWidth-1] & comboAdd_nxt[2*dataWidth-1]) begin
+        if (!comboAdd[2*dataWidth-1] & !mul[2*dataWidth-1]
+            & comboAdd_nxt[2*dataWidth-1]) begin
           comboAdd[2*dataWidth-1]   <= 1'b0;
           comboAdd[2*dataWidth-2:0] <= {2*dataWidth-1{1'b1}};
         // Addition of two negative but result is positive => overflow
-        end
-        else if (comboAdd[2*dataWidth-1] & mul[2*dataWidth-1] & !comboAdd_nxt[2*dataWidth-1]) begin
+        end else if (comboAdd[2*dataWidth-1] & mul[2*dataWidth-1]
+                    & !comboAdd_nxt[2*dataWidth-1]) begin
           comboAdd[2*dataWidth-1]   <= 1'b1;
           comboAdd[2*dataWidth-2:0] <= {2*dataWidth-1{1'b0}};
         end
         else begin
-          comboAdd <= comboAdd_nxt;
+          comboAdd <= comboAdd_nxt[2*dataWidth-1:0];
         end
+      end else if (mOutputValid) begin
+        comboAdd <= 'd0;
       end else begin
         comboAdd <= comboAdd;
       end
     end
   end
 
-  assign sum_nxt = comboAdd + bias;
+  assign sum_nxt = (enb2) ? comboAdd + bias : 'd0;
   always_ff@( posedge clk or negedge rstn) begin : sum_result
     if (!rstn) begin
       sum <= 'd0;
     end else begin
       if (enb2) begin
         // Addition of two positive but result is negative => overflow
-        if (!sum[2*dataWidth-1] & !bias[2*dataWidth-1] & sum_nxt[2*dataWidth-1]) begin
+        if (!comboAdd[2*dataWidth-1] & !bias[2*dataWidth-1] & sum_nxt[2*dataWidth-1]) begin
           sum[2*dataWidth-1]   <= 1'b0;
           sum[2*dataWidth-2:0] <= {2*dataWidth-1{1'b1}};
         // Addition of two negative but result is positive => overflow
-        end else if (sum[2*dataWidth-1] & bias[2*dataWidth-1] & !sum_nxt[2*dataWidth-1]) begin
+        end else if (comboAdd[2*dataWidth-1] & bias[2*dataWidth-1] & !sum_nxt[2*dataWidth-1]) begin
           sum[2*dataWidth-1]   <= 1'b1;
           sum[2*dataWidth-2:0] <= {2*dataWidth-1{1'b0}};
         end else begin
-          sum <= sum_nxt;
+          sum <= sum_nxt[2*dataWidth-1:0];
         end
+      end else if (mOutputValid) begin
+        sum <= 'd0;
       end else begin
         sum <= sum;
       end
@@ -211,16 +216,16 @@ module neuron
       enb1 <= 1'b0;
       enb2 <= 1'b0;
       enb2_dl <= 1'b0;
-      last_data <= 1'b0;
-      last_data_dl <= 1'b0;
+      last_weight <= 1'b0;
+      last_mul <= 1'b0;
       mOutputValid <= 1'b0;
     end else begin
       enb0 <= mInputValid;
       enb1 <= enb0;
-      if (rcnt == numWeight-1) last_data <= 1'b1;
-      else last_data <= 0;
-      last_data_dl <= last_data;
-      enb2 <= last_data_dl;
+      if (rcnt == numWeight-1) last_weight <= 1'b1;
+      else last_weight <= 0;
+      last_mul <= last_weight;
+      enb2 <= last_mul;
       enb2_dl <= enb2;
       mOutputValid <= enb2_dl;
     end
