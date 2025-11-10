@@ -70,6 +70,16 @@ Here is the implementaion of DNN in hardware. There are 3 main components inside
 |staReg|0x18|1|Status of interrupt. When being read, this register will automatically be clear to 0.|
 |controlReg|0x1c|1|Write 1 to register will create a soft reset to module.|
 
+`axi_lite_wrapper` will send configuration information to `Layerx` through below signals.
+
+|Signal name| Bit width| Description|
+|---|---|---|
+|layerNumber| 32 bit| Layer number that bias/weight value will be written in.|
+|neuronNumber| 32 bit| Neuron number that bias/weight value will be written in.|
+|weightValue| 32 bit| Weight value.|
+|biasValue| 32 bit| Bias value.|
+|softReset| 1 bit| Module soft reset.|
+
 ### `Layerx`
 
 `Layerx` will instantiate **[neurons](../../neuron/docs/Design.md)** based on its number of neurons. Input data will be serial type because each pixel of 28x28 image will be driven into module through AXI Stream interface. Meanwhile, output of `Layerx` will be parralel output because when one data of input passes into `Layerx`, it will be passed to all neurons at the same time. All neurons in `Layerx` will calculate the output at the same time.
