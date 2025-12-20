@@ -9,6 +9,7 @@ def genSigContent(dataWidth,sigmoidSize,weightIntSize,inputIntSize):
     for i in range(0,2**sigmoidSize):
         y = sigmoid(x)
         z = DtoB(y,dataWidth,dataWidth-inputIntSize)
+        print(f"{i}. f({x}) = {y}")
         f.write(z+'\n')
         x=x+(2**-fractBits)
     f.close()
@@ -38,4 +39,4 @@ def sigmoid(x):
 
 
 if __name__ == "__main__":
-    genSigContent(dataWidth=32,sigmoidSize=10,weightIntSize=4,inputIntSize=1)
+    genSigContent(dataWidth=16,sigmoidSize=10,weightIntSize=2,inputIntSize=2)

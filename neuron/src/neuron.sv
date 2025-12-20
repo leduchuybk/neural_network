@@ -222,7 +222,7 @@ module neuron
     end else begin
       enb0 <= mInputValid;
       enb1 <= enb0;
-      if (rcnt == numWeight-1) last_weight <= 1'b1;
+      if (rcnt == numWeight-1 & mInputValid) last_weight <= 1'b1;
       else last_weight <= 0;
       last_mul <= last_weight;
       enb2 <= last_mul;

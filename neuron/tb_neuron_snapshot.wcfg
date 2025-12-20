@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="7,915.463 ns"></ZoomStartTime>
-      <ZoomEndTime time="8,020.195 ns"></ZoomEndTime>
-      <Cursor1Time time="7,931.788 ns"></Cursor1Time>
+      <ZoomStartTime time="322.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="398.000 ns"></ZoomEndTime>
+      <Cursor1Time time="195.783 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="96"></ValueColumnWidth>
+      <NameColumnWidth column_width="274"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="21" />
+   <WVObjectSize size="18" />
    <wvobject type="logic" fp_name="/tb_neuron/dut/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -28,11 +28,11 @@
       <obj_property name="ObjectShortName">rstn</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_neuron/dut/mInput">
-      <obj_property name="ElementShortName">mInput[31:0]</obj_property>
-      <obj_property name="ObjectShortName">mInput[31:0]</obj_property>
+      <obj_property name="ElementShortName">mInput[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mInput[15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">31</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_neuron/dut/mInputValid">
@@ -40,16 +40,16 @@
       <obj_property name="ObjectShortName">mInputValid</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_neuron/dut/rcnt">
-      <obj_property name="ElementShortName">rcnt[9:0]</obj_property>
-      <obj_property name="ObjectShortName">rcnt[9:0]</obj_property>
+      <obj_property name="ElementShortName">rcnt[3:0]</obj_property>
+      <obj_property name="ObjectShortName">rcnt[3:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_neuron/dut/w_out">
-      <obj_property name="ElementShortName">w_out[31:0]</obj_property>
-      <obj_property name="ObjectShortName">w_out[31:0]</obj_property>
+      <obj_property name="ElementShortName">w_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_out[15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">31</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_neuron/dut/enb0">
@@ -57,11 +57,11 @@
       <obj_property name="ObjectShortName">enb0</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_neuron/dut/mul">
-      <obj_property name="ElementShortName">mul[63:0]</obj_property>
-      <obj_property name="ObjectShortName">mul[63:0]</obj_property>
+      <obj_property name="ElementShortName">mul[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mul[31:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">62</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_neuron/dut/enb1">
@@ -69,52 +69,44 @@
       <obj_property name="ObjectShortName">enb1</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_neuron/dut/comboAdd">
-      <obj_property name="ElementShortName">comboAdd[63:0]</obj_property>
-      <obj_property name="ObjectShortName">comboAdd[63:0]</obj_property>
+      <obj_property name="ElementShortName">comboAdd[31:0]</obj_property>
+      <obj_property name="ObjectShortName">comboAdd[31:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">62</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_neuron/dut/last_data">
-      <obj_property name="ElementShortName">last_data</obj_property>
-      <obj_property name="ObjectShortName">last_data</obj_property>
+   <wvobject type="logic" fp_name="/tb_neuron/dut/last_weight">
+      <obj_property name="ElementShortName">last_weight</obj_property>
+      <obj_property name="ObjectShortName">last_weight</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_neuron/dut/last_data_dl">
-      <obj_property name="ElementShortName">last_data_dl</obj_property>
-      <obj_property name="ObjectShortName">last_data_dl</obj_property>
+   <wvobject type="logic" fp_name="/tb_neuron/dut/last_mul">
+      <obj_property name="ElementShortName">last_mul</obj_property>
+      <obj_property name="ObjectShortName">last_mul</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_neuron/dut/enb2">
       <obj_property name="ElementShortName">enb2</obj_property>
       <obj_property name="ObjectShortName">enb2</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_neuron/dut/bias">
-      <obj_property name="ElementShortName">bias[63:0]</obj_property>
-      <obj_property name="ObjectShortName">bias[63:0]</obj_property>
+      <obj_property name="ElementShortName">bias[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bias[31:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">62</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">28</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_neuron/dut/sum">
-      <obj_property name="ElementShortName">sum[63:0]</obj_property>
-      <obj_property name="ObjectShortName">sum[63:0]</obj_property>
+      <obj_property name="ElementShortName">sum[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sum[31:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">62</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">28</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_neuron/dut/sum_nxt">
-      <obj_property name="ElementShortName">sum_nxt[64:0]</obj_property>
-      <obj_property name="ObjectShortName">sum_nxt[64:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">62</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_neuron/input_counter">
-      <obj_property name="ElementShortName">input_counter[31:0]</obj_property>
-      <obj_property name="ObjectShortName">input_counter[31:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_neuron/dut/\g_siginst.u_Sig_ROM /x">
+      <obj_property name="ElementShortName">x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">x[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_neuron/dut/mOutputValid">
@@ -122,27 +114,11 @@
       <obj_property name="ObjectShortName">mOutputValid</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_neuron/dut/mOutput">
-      <obj_property name="ElementShortName">mOutput[31:0]</obj_property>
-      <obj_property name="ObjectShortName">mOutput[31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">31</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_neuron/dut/\g_ReLUinst.u_ReLU /x">
-      <obj_property name="ElementShortName">x[63:0]</obj_property>
-      <obj_property name="ObjectShortName">x[63:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">62</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_neuron/dut/mInput_dl">
-      <obj_property name="ElementShortName">mInput_dl[31:0]</obj_property>
-      <obj_property name="ObjectShortName">mInput_dl[31:0]</obj_property>
+      <obj_property name="ElementShortName">mOutput[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mOutput[15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">31</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
 </wave_config>

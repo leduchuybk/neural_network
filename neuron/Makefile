@@ -5,14 +5,14 @@ SRC_FILES = src/*.sv sim/$(TB_FILE_NAME).sv
 TOP_MODULE = $(TB_FILE_NAME)
 SNAPSHOT_NAME = $(TB_FILE_NAME)_snapshot
 WORK_LIB = work
-
+ACT_FUNC ?= SIGMOID
 .PHONY: all compile elaborate simulate clean
 
 all: simulate
 
 compile:
 	@echo "--- 1. Parsing systemverilog files ---"
-	xvlog -sv -work $(WORK_LIB) $(SRC_FILES) --define PRETRAINED
+	xvlog -sv -work $(WORK_LIB) $(SRC_FILES) --define PRETRAINED --define $(ACT_FUNC)
 
 elaborate: compile
 	@echo "--- 2. Elaborating Design snapshot (xelab) ---"
