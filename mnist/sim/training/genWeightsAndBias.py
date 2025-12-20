@@ -1,8 +1,8 @@
 import json
 
 dataWidth = 16
-dataIntWidth = 1
-weightIntWidth = 4
+dataIntWidth = 2
+weightIntWidth = 2
 inputFile = "WeightsAndBiases.txt"
 dataFracWidth = dataWidth-dataIntWidth
 weightFracWidth = dataWidth-weightIntWidth
@@ -26,7 +26,7 @@ def DtoB(num,dataWidth,fracBits):						#funtion for converting into two's comple
 			d = 2**dataWidth - num
 	return d
 
-def genWaitAndBias(dataWidth,weightFracWidth,biasFracWidth,inputFile):
+def genWeightsAndBias(dataWidth,weightFracWidth,biasFracWidth,inputFile):
 	weightIntWidth = dataWidth-weightFracWidth
 	biasIntWidth = dataWidth-biasFracWidth
 	myDataFile = open(inputFile,"r")
@@ -43,6 +43,7 @@ def genWaitAndBias(dataWidth,weightFracWidth,biasFracWidth,inputFile):
 			for weight in range(0,len(myWeights[layer][neuron])):
 				if 'e' in str(myWeights[layer][neuron][weight]):
 					p = '0'
+					wInDec='0'
 				else:
 					if myWeights[layer][neuron][weight] > 2**(weightIntWidth-1):
 						myWeights[layer][neuron][weight] = 2**(weightIntWidth-1)-2**(-weightFracWidth)
@@ -79,4 +80,4 @@ def genWaitAndBias(dataWidth,weightFracWidth,biasFracWidth,inputFile):
 	biasHeaderFile.close()
 			
 if __name__ == "__main__":
-	genWaitAndBias(dataWidth,weightFracWidth,biasFracWidth,inputFile)
+	genWeightsAndBias(dataWidth,weightFracWidth,biasFracWidth,inputFile)

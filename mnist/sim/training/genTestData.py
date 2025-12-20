@@ -10,8 +10,8 @@ except:
 import gzip
 import numpy as np
 
-dataWidth = 16                    #specify the number of bits in test data
-IntSize = 1 #Number of bits of integer portion including sign bit
+dataWidth = 16 #specify the number of bits in test data
+IntSize = 2 #Number of bits of integer portion including sign bit
 
 try:
     testDataNum = int(sys.argv[1])
