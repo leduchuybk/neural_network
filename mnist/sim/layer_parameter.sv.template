@@ -2,20 +2,37 @@
 `define dataWidth 16
 `define numNeuronLayer1 30
 `define numWeightLayer1 784
+`ifdef SIGMOID
+`define Layer1ActType "sigmoid"
+`else
 `define Layer1ActType "relu"
+`endif
 `define numNeuronLayer2 30
 `define numWeightLayer2 30
+`ifdef SIGMOID
+`define Layer2ActType "sigmoid"
+`else
 `define Layer2ActType "relu"
+`endif
 `define numNeuronLayer3 10
 `define numWeightLayer3 30
+`ifdef SIGMOID
+`define Layer3ActType "sigmoid"
+`else
 `define Layer3ActType "relu"
+`endif
 `define numNeuronLayer4 10
 `define numWeightLayer4 10
+`ifdef SIGMOID
+`define Layer4ActType "sigmoid"
+`else
 `define Layer4ActType "relu"
+`endif
 `define numNeuronLayer5 10
 `define numWeightLayer5 10
 `define Layer5ActType "hardmax"
-`define sigmoidSize 5
-`define weightIntWidth 4
+`define sigmoidSize 10
+`define weightIntWidth 2
 `define WB_DIR "PATH_TO_WB"
 `define TEST_DIR "PATH_TO_TEST"
+`define SIG_DIR "PATH_TO_SIG"

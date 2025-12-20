@@ -72,13 +72,13 @@ Here is the implementaion of DNN in hardware. There are 3 main components inside
 
 `axi_lite_wrapper` will send configuration information to `Layerx` through below signals.
 
-|Signal name| Bit width| Description|
+|Signal name|Bit width|Description|
 |---|---|---|
-|layerNumber| 32 bit| Layer number that bias/weight value will be written in.|
-|neuronNumber| 32 bit| Neuron number that bias/weight value will be written in.|
-|weightValue| 32 bit| Weight value.|
-|biasValue| 32 bit| Bias value.|
-|softReset| 1 bit| Module soft reset.|
+|layerNumber|32 bit|Layer number that bias/weight value will be written in.|
+|neuronNumber|32 bit|Neuron number that bias/weight value will be written in.|
+|weightValue|32 bit|Weight value.|
+|biasValue|32 bit|Bias value.|
+|softReset|1 bit|Module soft reset.|
 
 ### `Layerx`
 
@@ -88,7 +88,7 @@ Here is the implementaion of DNN in hardware. There are 3 main components inside
 
 ### `Serialize`
 
-Paralel output of `Layerx` be de-serialized by module `Serialize` to be input of the next `Layerx`. Detail implementation of `Serialize` is shown as below.
+Paralel output of `Layerx` will be serialized by module `Serialize` to be input of the next `Layerx`. Detail implementation of `Serialize` is shown as below.
 `parallel_data` will be shifted `dataWidth` bits when `state` is equal to `SEND`. The process of shifting bit will start when parrallel_valid is pulled to `HIGH`.
 
 <img src="Serialize.drawio.png" alt="Layer"> <img src="Serialize_FSM.drawio.png" alt="Layer"> <!-- markdownlint-disable-line MD033 -->
@@ -102,3 +102,32 @@ python trainNN.py #To run training mnist, it will generate `WeightsAndBiases.txt
 python genWeightsAndBias.py #To generate weight and bias values from WeightAndBiases.txt in folder w_b
 python genTestData.py # To generate test data in folder testData
 ```
+
+There is a note when generating weight and bias. Because our design has two types of activation function, please change this command according to that choice in file `sim/training/network2.py`.
+
+```python
+def sigmoid(z):
+    """The sigmoid function."""
+    return 1.0/(1.0+np.exp(-z))
+    #return np.maximum(z,0)
+
+def sigmoid_prime(z):
+    """Derivative of the sigmoid function."""
+    return sigmoid(z)*(1-sigmoid(z))
+    #return 1. * (z > 0)
+```
+
+## RTL Simulation
+
+To run simulation, run the following command:
+
+```bash
+make simulate MAXTESTSAMPLES=<number of test input images (maximum 10000)> ACT_FUNC=<activation function choice (RELU/SIGMOID)>
+```
+
+Result for 10000 images
+
+|Activation function|Python run|RTL simulation run|
+|---|---|---|
+|Sigmoid function|96.29%|89.89%|
+|Relu function|96.28%|95.01%|

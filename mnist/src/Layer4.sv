@@ -27,6 +27,7 @@ module Layer4 #(
     for (i=0; i < NN; i++) begin : gen_neuron
       localparam string FILE_BIAS   = $sformatf("%sb_4_%0d.mif",`WB_DIR,i);
       localparam string FILE_WEIGHT = $sformatf("%sw_4_%0d.mif",`WB_DIR,i);
+      localparam string FILE_SIG    = $sformatf("%ssigContent.mif",`SIG_DIR);
       neuron #(
         .layerNo       (layerNum),
         .neuronNo      (i),
@@ -37,7 +38,7 @@ module Layer4 #(
         .actType       (actType),
         .biasFile      (FILE_BIAS),
         .weightFile    (FILE_WEIGHT),
-        .sigFile       ("sigContent.mif")
+        .sigFile       (FILE_SIG)
       ) u_neuron (
         .clk               (clk              ),
         .rstn              (rstn             ),
