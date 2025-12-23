@@ -193,19 +193,19 @@ module neuron
 `ifdef PRETRAINED
   initial
   begin
-      $readmemb(biasFile,biasReg);
+    $readmemb(biasFile,biasReg);
   end
   always @(posedge clk)
   begin
-      bias <= {biasReg[0][dataWidth-1:0],{dataWidth{1'b0}}};
+    bias <= {biasReg[0][dataWidth-1:0],{dataWidth{1'b0}}};
   end
 `else
   always @(posedge clk)
   begin
-      if(mBiasValid & (config_layer_num==layerNo) & (config_neuron_num==neuronNo))
-      begin
-          bias <= {mBias[dataWidth-1:0],{dataWidth{1'b0}}};
-      end
+    if(mBiasValid & (config_layer_num==layerNo) & (config_neuron_num==neuronNo))
+    begin
+      bias <= {mBias[dataWidth-1:0],{dataWidth{1'b0}}};
+    end
   end
 `endif
 

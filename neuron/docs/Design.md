@@ -82,6 +82,10 @@ For simplicity, we create test for 2 cases:
 
 Here are simulation result in two cases:
 
+```bash
+make simulate ACT_FUNC=<RELU/SIGMOID>
+```
+
 - Activation function is relu function:
 
 ```bash
