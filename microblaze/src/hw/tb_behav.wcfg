@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="axi_bram_ctrl_funcs" />
+            <top_module name="axi_datamover_pkg" />
+            <top_module name="axi_dma_pkg" />
+            <top_module name="glbl" />
+            <top_module name="ipif_pkg" />
+            <top_module name="lmb_bram_if_funcs" />
+            <top_module name="mdm_funcs" />
+            <top_module name="tb" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="8.386628 us"></ZoomStartTime>
+      <ZoomEndTime time="181.971013 us"></ZoomEndTime>
+      <Cursor1Time time="87.665000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="274"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="20" />
+   <wvobject type="logic" fp_name="/tb/simulationend">
+      <obj_property name="ElementShortName">simulationend</obj_property>
+      <obj_property name="ObjectShortName">simulationend</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/data_out">
+      <obj_property name="ElementShortName">data_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_out[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /mInput">
+      <obj_property name="ElementShortName">mInput[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mInput[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /mInputValid">
+      <obj_property name="ElementShortName">mInputValid</obj_property>
+      <obj_property name="ObjectShortName">mInputValid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /w_out">
+      <obj_property name="ElementShortName">w_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /rcnt">
+      <obj_property name="ElementShortName">rcnt[9:0]</obj_property>
+      <obj_property name="ObjectShortName">rcnt[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /mul">
+      <obj_property name="ElementShortName">mul[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mul[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /comboAdd">
+      <obj_property name="ElementShortName">comboAdd[31:0]</obj_property>
+      <obj_property name="ObjectShortName">comboAdd[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /sum">
+      <obj_property name="ElementShortName">sum[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sum[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /bias">
+      <obj_property name="ElementShortName">bias[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bias[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /enb0">
+      <obj_property name="ElementShortName">enb0</obj_property>
+      <obj_property name="ObjectShortName">enb0</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /enb1">
+      <obj_property name="ElementShortName">enb1</obj_property>
+      <obj_property name="ObjectShortName">enb1</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /enb2">
+      <obj_property name="ElementShortName">enb2</obj_property>
+      <obj_property name="ObjectShortName">enb2</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /mOutput">
+      <obj_property name="ElementShortName">mOutput[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mOutput[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/top/dut/u_Layer1/\gen_neuron[0].u_neuron /mOutputValid">
+      <obj_property name="ElementShortName">mOutputValid</obj_property>
+      <obj_property name="ObjectShortName">mOutputValid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/top/intr">
+      <obj_property name="ElementShortName">intr</obj_property>
+      <obj_property name="ObjectShortName">intr</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/dut/out">
+      <obj_property name="ElementShortName">out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">out[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/top/dut/out_valid">
+      <obj_property name="ElementShortName">out_valid</obj_property>
+      <obj_property name="ObjectShortName">out_valid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/bd_wrapper/bd_i/microblaze_0/Instr_Addr">
+      <obj_property name="ElementShortName">Instr_Addr[0:31]</obj_property>
+      <obj_property name="ObjectShortName">Instr_Addr[0:31]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/top/bd_wrapper/bd_i/microblaze_0/Instr">
+      <obj_property name="ElementShortName">Instr[0:31]</obj_property>
+      <obj_property name="ObjectShortName">Instr[0:31]</obj_property>
+   </wvobject>
+</wave_config>

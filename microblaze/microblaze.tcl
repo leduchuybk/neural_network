@@ -53,12 +53,12 @@
 proc checkRequiredFiles { origin_dir} {
   set status true
   set files [list \
- "[file normalize "$origin_dir/../microblaze_sim/microblaze_sim.srcs/sources_1/bd/bd/bd.bd"]"\
- "[file normalize "$origin_dir/../microblaze_sim/microblaze_sim.srcs/sources_1/new/top.sv"]"\
- "[file normalize "$origin_dir/../microblaze_sim/tb_behav.wcfg"]"\
- "[file normalize "$origin_dir/../microblaze_sim/microblaze_sim.sw/hello_world/build/hello_world.elf"]"\
- "[file normalize "$origin_dir/../microblaze_sim/microblaze_sim.sw/mnist_relu/build/mnist_relu.elf"]"\
- "[file normalize "$origin_dir/../microblaze_sim/microblaze_sim.srcs/sim_1/new/tb.v"]"\
+ "[file normalize "$origin_dir/src/hw/bd.bd"]"\
+ "[file normalize "$origin_dir/src/hw/top.sv"]"\
+ "[file normalize "$origin_dir/src/hw/tb_behav.wcfg"]"\
+ "[file normalize "$origin_dir/src/sw/hello_world.elf"]"\
+ "[file normalize "$origin_dir/src/sw/mnist_relu.elf"]"\
+ "[file normalize "$origin_dir/src/hw/tb.v"]"\
   ]
   foreach ifile $files {
     if { ![file isfile $ifile] } {
@@ -81,7 +81,6 @@ proc checkRequiredFiles { origin_dir} {
  "[file normalize "$origin_dir/../mnist/src/maxFinder.sv"]"\
  "[file normalize "$origin_dir/../neuron/src/neuron.sv"]"\
  "[file normalize "$origin_dir/../mnist/src/serialize.sv"]"\
- "[file normalize "$origin_dir/../microblaze_sim/microblaze_sim.srcs/sim_1/imports/Downloads/cmsdk_uart_capture.v"]"\
   ]
   foreach ifile $files {
     if { ![file isfile $ifile] } {
@@ -90,25 +89,10 @@ proc checkRequiredFiles { origin_dir} {
     }
   }
 
-  set paths [list \
- "[file normalize "$origin_dir/../microblaze_sim/ip_repo"]"]"\
-  ]
-  foreach ipath $paths {
-    if { ![file isdirectory $ipath] } {
-      puts " Could not access $ipath "
-      set status false
-    }
-  }
-
   return $status
 }
 # Set the reference directory for source file relative paths (by default the value is script directory path)
 set origin_dir "."
-
-# Use origin directory path location variable, if specified in the tcl shell
-if { [info exists ::origin_dir_loc] } {
-  set origin_dir $::origin_dir_loc
-}
 
 # Set the project name
 set _xil_proj_name_ "microblaze_sim"
@@ -166,8 +150,6 @@ if { $::argc > 0 } {
   }
 }
 
-# Set the directory path for the original project from where this script was exported
-set orig_proj_dir "[file normalize "$origin_dir/../microblaze_sim"]"
 
 # Check for paths and files needed for project creation
 set validate_required 0
@@ -270,13 +252,13 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 }
 
 # Set IP repository paths
-set obj [get_filesets sources_1]
-if { $obj != {} } {
-   set_property "ip_repo_paths" "[file normalize "$origin_dir/../ip_repo"]" $obj
+#set obj [get_filesets sources_1]
+#if { $obj != {} } {
+#   set_property "ip_repo_paths" "[file normalize "$origin_dir/../ip_repo"]" $obj
 
    # Rebuild user ip_repo's index before adding any source files
-   update_ip_catalog -rebuild
-}
+#   update_ip_catalog -rebuild
+#}
 
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
@@ -299,14 +281,14 @@ add_files -norecurse -fileset $obj $files
 
 # Add local files from the original project (-no_copy_sources specified)
 set files [list \
- [file normalize "${origin_dir}/../microblaze_sim/microblaze_sim.srcs/sources_1/bd/bd/bd.bd" ]\
- [file normalize "${origin_dir}/../microblaze_sim/microblaze_sim.srcs/sources_1/new/top.sv" ]\
+ [file normalize "${origin_dir}/src/hw/bd.bd" ]\
+ [file normalize "${origin_dir}/src/hw/top.sv" ]\
 ]
 set added_files [add_files -fileset sources_1 $files]
 
 #call make_wrapper to create wrapper files
 if { [get_property IS_LOCKED [ get_files -norecurse bd.bd] ] == 1  } {
-  import_files -fileset sources_1 [file normalize "${origin_dir}/../microblaze_sim/microblaze_sim.gen/sources_1/bd/bd/hdl/bd_wrapper.v" ]
+  import_files -fileset sources_1 [file normalize "${origin_dir}/src/hw/bd_wrapper.v" ]
 } else {
   set wrapper_path [make_wrapper -fileset sources_1 -files [ get_files -norecurse bd.bd] -top]
   add_files -norecurse -fileset sources_1 $wrapper_path
@@ -484,7 +466,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 
 # Set 'sources_1' fileset file properties for local files
-set file "bd/bd.bd"
+set file "src/hw/bd.bd"
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "exclude_debug_logic" -value "0" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -497,7 +479,7 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
-set file "new/top.sv"
+set file "src/hw/top.sv"
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -554,38 +536,18 @@ if {[string equal [get_filesets -quiet sim_1] ""]} {
 
 # Set 'sim_1' fileset object
 set obj [get_filesets sim_1]
-set files [list \
- [file normalize "${origin_dir}/../microblaze_sim/microblaze_sim.srcs/sim_1/imports/Downloads/cmsdk_uart_capture.v"] \
-]
-add_files -norecurse -fileset $obj $files
 
 # Add local files from the original project (-no_copy_sources specified)
 set files [list \
- [file normalize "${origin_dir}/../microblaze_sim/tb_behav.wcfg" ]\
- [file normalize "${origin_dir}/../microblaze_sim/microblaze_sim.sw/hello_world/build/hello_world.elf" ]\
- [file normalize "${origin_dir}/../microblaze_sim/microblaze_sim.sw/mnist_relu/build/mnist_relu.elf" ]\
- [file normalize "${origin_dir}/../microblaze_sim/microblaze_sim.srcs/sim_1/new/tb.v" ]\
+ [file normalize "src/hw/tb_behav.wcfg" ]\
+ [file normalize "src/sw/hello_world.elf" ]\
+ [file normalize "src/sw/mnist_relu.elf" ]\
+ [file normalize "src/hw/tb.v" ]\
 ]
 set added_files [add_files -fileset sim_1 $files]
 
-# Set 'sim_1' fileset file properties for remote files
-set file "$origin_dir/../microblaze_sim/microblaze_sim.srcs/sim_1/imports/Downloads/cmsdk_uart_capture.v"
-set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
-set_property -name "file_type" -value "Verilog" -objects $file_obj
-set_property -name "is_enabled" -value "1" -objects $file_obj
-set_property -name "is_global_include" -value "0" -objects $file_obj
-set_property -name "library" -value "xil_defaultlib" -objects $file_obj
-set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
-set_property -name "scoped_to_cells" -value "" -objects $file_obj
-set_property -name "used_in" -value "synthesis implementation simulation" -objects $file_obj
-set_property -name "used_in_implementation" -value "1" -objects $file_obj
-set_property -name "used_in_simulation" -value "1" -objects $file_obj
-set_property -name "used_in_synthesis" -value "1" -objects $file_obj
-
-
 # Set 'sim_1' fileset file properties for local files
-set file "microblaze_sim/tb_behav.wcfg"
+set file "src/hw/tb_behav.wcfg"
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -594,7 +556,7 @@ set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
 set_property -name "used_in" -value "simulation" -objects $file_obj
 set_property -name "used_in_simulation" -value "1" -objects $file_obj
 
-set file "build/hello_world.elf"
+set file "src/sw/hello_world.elf"
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
@@ -604,7 +566,7 @@ set_property -name "used_in" -value "simulation" -objects $file_obj
 set_property -name "used_in_implementation" -value "0" -objects $file_obj
 set_property -name "used_in_simulation" -value "1" -objects $file_obj
 
-set file "build/mnist_relu.elf"
+set file "src/sw/mnist_relu.elf"
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
@@ -614,7 +576,7 @@ set_property -name "used_in" -value "simulation" -objects $file_obj
 set_property -name "used_in_implementation" -value "0" -objects $file_obj
 set_property -name "used_in_simulation" -value "1" -objects $file_obj
 
-set file "new/tb.v"
+set file "src/hw/tb.v"
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -1449,3 +1411,7 @@ move_dashboard_gadget -name {drc_1} -row 2 -col 0
 move_dashboard_gadget -name {timing_1} -row 0 -col 1
 move_dashboard_gadget -name {utilization_2} -row 1 -col 1
 move_dashboard_gadget -name {methodology_1} -row 2 -col 1
+
+# Run simulation
+launch_simulation
+run all
