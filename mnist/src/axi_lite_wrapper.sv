@@ -405,23 +405,21 @@ module axi_lite_wrapper #
   always @(posedge S_AXI_ACLK)
   begin
     if ( S_AXI_ARESETN == 1'b0 )
-          statReg <= 1'b0;
+      statReg <= {C_S_AXI_DATA_WIDTH{1'b0}};
     else if(nnOut_valid)
-        statReg <= 1'b1;
-    else if(axi_rvalid & S_AXI_RREADY & axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB]==3'h6)
-        //read clear status reg
-        statReg <= 1'b0;
+      statReg <= {{(C_S_AXI_DATA_WIDTH-1){1'b0}}, 1'b1};
+    else if(slv_reg_rden & axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB]==3'h6)
+      //read clear status reg
+      statReg <= {C_S_AXI_DATA_WIDTH{1'b0}};
   end
 
   always @(posedge S_AXI_ACLK)
     begin
-       if(!axi_rd_en & axi_rvalid & S_AXI_RREADY & 
-          axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB]==3'h5)
-       begin
-           axi_rd_en <= 1'b1;
-       end
-       else
-           axi_rd_en <= 1'b0;
+      if(!axi_rd_en & axi_rvalid & S_AXI_RREADY &
+      axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB]==3'h5)
+        axi_rd_en <= 1'b1;
+      else
+        axi_rd_en <= 1'b0;
     end
 
   // Output register or memory read data

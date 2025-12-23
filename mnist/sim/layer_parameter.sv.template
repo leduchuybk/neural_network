@@ -36,3 +36,4 @@
 `define WB_DIR "PATH_TO_WB"
 `define TEST_DIR "PATH_TO_TEST"
 `define SIG_DIR "PATH_TO_SIG"
+`define PRETRAINED

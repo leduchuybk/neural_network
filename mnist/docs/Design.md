@@ -67,7 +67,7 @@ Here is the implementaion of DNN in hardware. There are 3 main components inside
 |layerReg|0x0c|32|Define layer number in which we will set up weight and bias in case these two values are not pre defined.|
 |neuronReg|0x10|32|Define neuron number in which we will set up weight and bias in case these two values are not pre defined.|
 |axi_rd_data|0x14|32|There are 10 values of 10 neurons in layer 4. Each time we read this register, we will read the value of each neurons in layer 4.|
-|staReg|0x18|1|Status of interrupt. When being read, this register will automatically be clear to 0.|
+|statReg|0x18|1|Status of interrupt. When being read, this register will automatically be clear to 0.|
 |controlReg|0x1c|1|Write 1 to register will create a soft reset to module.|
 
 `axi_lite_wrapper` will send configuration information to `Layerx` through below signals.
