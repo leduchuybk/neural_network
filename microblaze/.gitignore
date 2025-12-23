@@ -1,3 +1,5 @@
 microblaze*
 !microblaze.tcl
 vivado*
+src/hw/ip
+src/hw/ipshared

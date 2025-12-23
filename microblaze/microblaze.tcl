@@ -20,33 +20,8 @@
 #
 # 1. This project restoration tcl script (microblaze.tcl) that was generated.
 #
-# 2. The following source(s) files that were local or imported into the original project.
-#    (Please see the '$orig_proj_dir' and '$origin_dir' variable setting below at the start of the script)
-#
-#    "/home/huyld/WORK/neural_network/microblaze_sim/microblaze_sim.srcs/sources_1/bd/bd/bd.bd"
-#    "/home/huyld/WORK/neural_network/microblaze_sim/microblaze_sim.srcs/sources_1/new/top.sv"
-#    "/home/huyld/WORK/neural_network/microblaze_sim/tb_behav.wcfg"
-#    "/home/huyld/WORK/neural_network/microblaze_sim/microblaze_sim.sw/hello_world/build/hello_world.elf"
-#    "/home/huyld/WORK/neural_network/microblaze_sim/microblaze_sim.sw/mnist_relu/build/mnist_relu.elf"
-#    "/home/huyld/WORK/neural_network/microblaze_sim/microblaze_sim.srcs/sim_1/new/tb.v"
-#
-# 3. The following remote source files that were added to the original project:-
-#
-#    "/home/huyld/WORK/neural_network/mnist/sim/layer_parameter.sv"
-#    "/home/huyld/WORK/neural_network/mnist/src/Layer1.sv"
-#    "/home/huyld/WORK/neural_network/mnist/src/Layer2.sv"
-#    "/home/huyld/WORK/neural_network/mnist/src/Layer3.sv"
-#    "/home/huyld/WORK/neural_network/mnist/src/Layer4.sv"
-#    "/home/huyld/WORK/neural_network/neuron/src/ReLU.sv"
-#    "/home/huyld/WORK/neural_network/neuron/src/Sig_ROM.sv"
-#    "/home/huyld/WORK/neural_network/neuron/src/WeightMemory.sv"
-#    "/home/huyld/WORK/neural_network/mnist/src/axi_lite_wrapper.sv"
-#    "/home/huyld/WORK/neural_network/mnist/src/dnn.sv"
-#    "/home/huyld/WORK/neural_network/mnist/src/maxFinder.sv"
-#    "/home/huyld/WORK/neural_network/neuron/src/neuron.sv"
-#    "/home/huyld/WORK/neural_network/mnist/src/serialize.sv"
-#    "/home/huyld/WORK/neural_network/microblaze_sim/microblaze_sim.srcs/sim_1/imports/Downloads/cmsdk_uart_capture.v"
-#
+# 2. Change line : Line 150 pointing to correct folder holding your board file downloaded from:
+# https://github.com/Digilent/vivado-boards
 #*****************************************************************************************
 
 # Check file required for this script exists
